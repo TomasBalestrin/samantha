@@ -92,6 +92,7 @@ img { max-width: 100%; display: block; }
   color: var(--cream);
   text-wrap: balance;
 }
+.section__title em { font-style: italic; font-weight: 500; color: var(--gold-bright); }
 
 .btn {
   --pad-y: 1rem;
@@ -269,7 +270,9 @@ img { max-width: 100%; display: block; }
 }
 .pillar:hover { transform: translateY(-6px); border-color: var(--gold); }
 .pillar__num { font-family: var(--ff-display); font-style: italic; font-size: 2rem; color: var(--gold); display: block; margin-bottom: 1.1rem; line-height: 1; }
-.pillar__name { font-family: var(--ff-display); font-weight: 500; font-size: 1.4rem; margin: 0 0 0.7rem; }
+.pillar__name { font-family: var(--ff-display); font-weight: 500; font-size: 1.4rem; line-height: 1.2; margin: 0 0 0.7rem; }
+/* reserva duas linhas para o título, alinhando o início dos parágrafos entre os cards */
+@media (min-width: 601px) { .pillar__name { min-height: 2.4em; } }
 .pillar p { margin: 0; color: var(--cream-dim); font-size: 0.98rem; line-height: 1.5; }
 
 /* ---------- depois ---------- */
