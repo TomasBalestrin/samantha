@@ -8,7 +8,7 @@ if (yearEl) yearEl.textContent = String(new Date().getFullYear())
 const revealTargets = document.querySelectorAll(
   '.section__head, .discover__item, .note, .shift__lead, .shift__answer, ' +
   '.shift__cols, .shift__punch, .fit__card, .host__media, .host__body, ' +
-  '.pillar, .after__title, .after__text, .carousel, .form, .apply__sub'
+  '.pillar, .after__title, .after__text, .carousel, .cta-inline, .form, .apply__sub'
 )
 revealTargets.forEach((el, i) => {
   el.setAttribute('data-reveal', '')
