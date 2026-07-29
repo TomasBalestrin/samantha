@@ -8,7 +8,7 @@ if (yearEl) yearEl.textContent = String(new Date().getFullYear())
 const revealTargets = document.querySelectorAll(
   '.section__head, .discover__item, .note, .shift__lead, .shift__answer, ' +
   '.shift__cols, .shift__punch, .fit__card, .host__media, .host__body, ' +
-  '.pillar, .after__title, .after__text, .carousel, .cta-inline, .form, .apply__sub'
+  '.pillar, .after__title, .after__text, .carousel, .cta-inline, .quiz, .apply__sub'
 )
 revealTargets.forEach((el, i) => {
   el.setAttribute('data-reveal', '')
@@ -70,52 +70,93 @@ if (phone) {
   })
 }
 
-/* ---------- envio da aplicação ---------- */
+/* ---------- quiz de aplicação (uma pergunta por etapa) ---------- */
 const form = document.getElementById('application-form')
 const success = document.getElementById('success')
 
-function markError(field, on) {
-  const wrapper = field.closest('.field')
-  if (wrapper) wrapper.classList.toggle('field--error', on)
-}
-
 if (form) {
-  // limpa o estado de erro ao interagir
-  form.addEventListener('input', (e) => {
-    const t = e.target
-    if (t.name) {
-      form.querySelectorAll(`[name="${CSS.escape(t.name)}"]`).forEach((el) => markError(el, false))
+  const steps = Array.from(form.querySelectorAll('[data-step]'))
+  const total = steps.length
+  const fill = document.getElementById('quiz-fill')
+  const currentEl = document.getElementById('quiz-current')
+  const totalEl = document.getElementById('quiz-total')
+  const errEl = document.getElementById('quiz-err')
+  const backBtn = form.querySelector('[data-back]')
+  const nextBtn = form.querySelector('[data-next]')
+  const submitBtn = form.querySelector('[data-submit]')
+
+  let index = 0
+  if (totalEl) totalEl.textContent = String(total)
+
+  const clearErr = () => { if (errEl) { errEl.hidden = true; errEl.textContent = '' } }
+
+  const showError = (msg) => {
+    if (errEl) { errEl.textContent = msg; errEl.hidden = false }
+    steps[index].classList.add('step--error')
+  }
+
+  // valida apenas a etapa atual
+  const validateStep = () => {
+    const step = steps[index]
+    const radios = step.querySelectorAll('input[type="radio"]')
+    if (radios.length) {
+      const name = radios[0].name
+      return form.querySelector(`input[name="${CSS.escape(name)}"]:checked`)
+        ? true : (showError('Selecione uma opção para continuar.'), false)
+    }
+    const field = step.querySelector('input, textarea')
+    if (field && !field.value.trim()) {
+      return showError('Preencha este campo para continuar.'), false
+    }
+    return true
+  }
+
+  const render = () => {
+    steps.forEach((s, i) => s.classList.toggle('is-active', i === index))
+    const isLast = index === total - 1
+    if (fill) fill.style.width = `${((index + 1) / total) * 100}%`
+    if (currentEl) currentEl.textContent = String(index + 1)
+    if (backBtn) backBtn.hidden = index === 0
+    if (nextBtn) nextBtn.hidden = isLast
+    if (submitBtn) submitBtn.hidden = !isLast
+    clearErr()
+    // foca o primeiro campo de texto da etapa (sem rolar a página)
+    const focusable = steps[index].querySelector('input[type="text"], input[type="tel"], textarea')
+    if (focusable) focusable.focus({ preventScroll: true })
+  }
+
+  const goNext = () => {
+    if (!validateStep()) return
+    if (index < total - 1) { index++; render() }
+  }
+  const goBack = () => { if (index > 0) { index--; render() } }
+
+  if (nextBtn) nextBtn.addEventListener('click', goNext)
+  if (backBtn) backBtn.addEventListener('click', goBack)
+
+  // limpa erro ao interagir
+  form.addEventListener('input', () => { steps[index].classList.remove('step--error'); clearErr() })
+
+  // avanço automático ao escolher uma opção (etapas marcadas com data-auto)
+  form.addEventListener('change', (e) => {
+    const step = steps[index]
+    if (e.target.type === 'radio' && step.hasAttribute('data-auto')) {
+      setTimeout(goNext, 260)
+    }
+  })
+
+  // Enter avança nos campos de texto (não no textarea)
+  form.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && e.target.tagName === 'INPUT') {
+      e.preventDefault()
+      goNext()
     }
   })
 
   form.addEventListener('submit', (e) => {
     e.preventDefault()
+    if (!validateStep()) return
 
-    // valida grupos (inputs, textareas e radios obrigatórios)
-    let firstInvalid = null
-    const required = form.querySelectorAll('[required]')
-    const seenRadio = new Set()
-
-    for (const el of required) {
-      let invalid = false
-      if (el.type === 'radio') {
-        if (seenRadio.has(el.name)) continue
-        seenRadio.add(el.name)
-        invalid = !form.querySelector(`input[name="${CSS.escape(el.name)}"]:checked`)
-      } else {
-        invalid = !el.value.trim()
-      }
-      markError(el, invalid)
-      if (invalid && !firstInvalid) firstInvalid = el
-    }
-
-    if (firstInvalid) {
-      firstInvalid.closest('.field')?.scrollIntoView({ behavior: 'smooth', block: 'center' })
-      if (typeof firstInvalid.focus === 'function') firstInvalid.focus({ preventScroll: true })
-      return
-    }
-
-    // coleta as respostas
     const data = Object.fromEntries(new FormData(form).entries())
     // TODO: conectar a um destino real (webhook, e-mail, planilha ou CRM).
     // Ex.: fetch('/api/aplicacao', { method: 'POST', body: JSON.stringify(data) })
@@ -127,4 +168,6 @@ if (form) {
       success.scrollIntoView({ behavior: 'smooth', block: 'center' })
     }
   })
+
+  render()
 }
