@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%2317110c'/%3E%3Ctext x='50' y='68' font-size='54' font-family='Georgia,serif' fill='%23d8b064' text-anchor='middle'%3EM%3C/text%3E%3C/svg%3E" />
+    <title>Aplicação — Sessão Estratégica MFV | Samantha Busnello</title>
+    <meta name="description" content="Preencha sua aplicação para a Sessão Estratégica com Samantha Busnello." />
+    <meta name="theme-color" content="#17110c" />
+    <meta name="robots" content="noindex" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..500&family=Instrument+Sans:wght@400;500;600&family=Fragment+Mono:ital@0;1&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <header class="nav">
+      <a class="nav__brand" href="/">
+        <span class="nav__mark">MFV</span>
+        <span class="nav__by">Samantha Busnello</span>
+      </a>
+      <a class="nav__cta" href="/">‹ Voltar ao site</a>
+    </header>
+
+    <main class="formmain">
+      <section class="section section--apply formpage" aria-labelledby="apply-h">
+        <div class="wrap wrap--form">
+          <header class="section__head section__head--center">
+            <p class="eyebrow">Aplicação</p>
+            <h2 id="apply-h" class="section__title">Pronto para descobrir o que está limitando seu crescimento?</h2>
+            <p class="apply__sub">Preencha sua aplicação e aguarde o contato da nossa equipe. Poucas pessoas são selecionadas, então leve cada resposta a sério.</p>
+          </header>
+
+          <form class="quiz" id="application-form" novalidate>
+            <div class="quiz__progress">
+              <div class="quiz__bar"><span id="quiz-fill"></span></div>
+              <span class="quiz__count">Pergunta <span id="quiz-current">1</span> de <span id="quiz-total">11</span></span>
+            </div>
+
+            <div class="quiz__steps">
+              <div class="step" data-step>
+                <label class="step__q" for="nome">Qual é o seu nome e sobrenome?</label>
+                <input type="text" id="nome" name="nome" autocomplete="name" required placeholder="Como você se chama?" />
+              </div>
+
+              <div class="step" data-step>
+                <label class="step__q" for="whatsapp">Qual o seu WhatsApp?</label>
+                <input type="tel" id="whatsapp" name="whatsapp" autocomplete="tel" required placeholder="(00) 00000-0000" />
+              </div>
+
+              <div class="step" data-step>
+                <label class="step__q" for="instagram">Qual o @ do seu Instagram?</label>
+                <input type="text" id="instagram" name="instagram" required placeholder="@seuperfil" />
+              </div>
+
+              <fieldset class="step" data-step data-auto>
+                <legend class="step__q">Há quanto tempo você atua na estética?</legend>
+                <div class="choices choices--stack">
+                  <label class="choice"><input type="radio" name="tempo_atuacao" value="Menos de 1 ano" required /><span>Menos de 1 ano</span></label>
+                  <label class="choice"><input type="radio" name="tempo_atuacao" value="De 1 a 5 anos" /><span>De 1 a 5 anos</span></label>
+                  <label class="choice"><input type="radio" name="tempo_atuacao" value="Mais de 5 anos" /><span>Mais de 5 anos</span></label>
+                  <label class="choice"><input type="radio" name="tempo_atuacao" value="Acima de 10 anos" /><span>Acima de 10 anos</span></label>
+                </div>
+              </fieldset>
+
+              <fieldset class="step" data-step data-auto>
+                <legend class="step__q">Qual o seu maior desafio no consultório?</legend>
+                <div class="choices choices--stack">
+                  <label class="choice"><input type="radio" name="desafio" value="Marketing e posicionamento" required /><span>Marketing e posicionamento</span></label>
+                  <label class="choice"><input type="radio" name="desafio" value="Captação" /><span>Captação</span></label>
+                  <label class="choice"><input type="radio" name="desafio" value="Vendas" /><span>Vendas</span></label>
+                  <label class="choice"><input type="radio" name="desafio" value="Vender tratamentos mais completos" /><span>Vender tratamentos mais completos</span></label>
+                  <label class="choice"><input type="radio" name="desafio" value="Gestão do consultório" /><span>Gestão do consultório</span></label>
+                  <label class="choice"><input type="radio" name="desafio" value="Treinamento de equipe" /><span>Treinamento de equipe</span></label>
+                </div>
+              </fieldset>
+
+              <fieldset class="step" data-step data-auto>
+                <legend class="step__q">Quantos colaboradores você possui?</legend>
+                <div class="choices choices--stack">
+                  <label class="choice"><input type="radio" name="colaboradores" value="Nenhum, sou sozinho(a)" required /><span>Nenhum, sou sozinho(a)</span></label>
+                  <label class="choice"><input type="radio" name="colaboradores" value="1 a 3" /><span>1 a 3</span></label>
+                  <label class="choice"><input type="radio" name="colaboradores" value="Mais de 3" /><span>Mais de 3</span></label>
+                </div>
+              </fieldset>
+
+              <fieldset class="step" data-step data-auto>
+                <legend class="step__q">Sua meta realista de faturamento para os próximos 6 meses?</legend>
+                <div class="choices choices--stack">
+                  <label class="choice"><input type="radio" name="meta" value="40 mil" required /><span>40 mil</span></label>
+                  <label class="choice"><input type="radio" name="meta" value="60 mil" /><span>60 mil</span></label>
+                  <label class="choice"><input type="radio" name="meta" value="Acima de 80 mil" /><span>Acima de 80 mil</span></label>
+                </div>
+              </fieldset>
+
+              <fieldset class="step" data-step data-auto>
+                <legend class="step__q">Qual a sua média de faturamento atual?</legend>
+                <div class="choices choices--stack">
+                  <label class="choice"><input type="radio" name="faturamento_atual" value="Até 10 mil" required /><span>Até 10 mil</span></label>
+                  <label class="choice"><input type="radio" name="faturamento_atual" value="Até 20 mil" /><span>Até 20 mil</span></label>
+                  <label class="choice"><input type="radio" name="faturamento_atual" value="De 20 a 40 mil" /><span>De 20 a 40 mil</span></label>
+                  <label class="choice"><input type="radio" name="faturamento_atual" value="De 40 a 60 mil" /><span>De 40 a 60 mil</span></label>
+                </div>
+              </fieldset>
+
+              <fieldset class="step" data-step data-auto>
+                <legend class="step__q">Quanto você investiria por mês para estruturar o crescimento da sua clínica?</legend>
+                <div class="choices choices--stack">
+                  <label class="choice"><input type="radio" name="investimento" value="Entre 1.000 e 2.000/mês" required /><span>Entre R$ 1.000 e 2.000 / mês</span></label>
+                  <label class="choice"><input type="radio" name="investimento" value="Entre 2.000 e 4.000/mês" /><span>Entre R$ 2.000 e 4.000 / mês</span></label>
+                  <label class="choice"><input type="radio" name="investimento" value="Entre 8.000 e 12.000/mês" /><span>Entre R$ 8.000 e 12.000 / mês</span></label>
+                  <label class="choice"><input type="radio" name="investimento" value="Não consigo investir no momento" /><span>Não consigo investir no momento</span></label>
+                </div>
+              </fieldset>
+
+              <div class="step" data-step>
+                <label class="step__q" for="motivacao">O que mais te motivou a buscar crescimento para sua clínica?</label>
+                <textarea id="motivacao" name="motivacao" rows="4" required placeholder="Conte com suas palavras."></textarea>
+              </div>
+
+              <fieldset class="step" data-step>
+                <legend class="step__q">Um aviso honesto</legend>
+                <p class="commit__text">
+                  Poucas pessoas são selecionadas para este projeto, não pelo fator financeiro, mas porque nem todo momento é o momento certo. A maioria não está comprometida ou acredita que vai enriquecer sem fazer a própria parte. Seja sincero(a): você está comprometido(a) neste momento?
+                </p>
+                <div class="choices choices--stack">
+                  <label class="choice"><input type="radio" name="comprometimento" value="Sim, estou pronta" required /><span>Sim, estou pronta(o)</span></label>
+                  <label class="choice"><input type="radio" name="comprometimento" value="Não estou pronta" /><span>Não, ainda não é a minha hora</span></label>
+                </div>
+              </fieldset>
+            </div>
+
+            <p class="quiz__err" id="quiz-err" role="alert" hidden></p>
+
+            <div class="quiz__nav">
+              <button type="button" class="quiz__back" data-back>‹ Voltar</button>
+              <button type="button" class="btn btn--gold quiz__next" data-next>Continuar</button>
+              <button type="submit" class="btn btn--gold quiz__submit" data-submit hidden>Enviar minha aplicação</button>
+            </div>
+            <p class="form__legal">Ao enviar, você concorda em ser contatado(a) pela nossa equipe pelo WhatsApp informado.</p>
+          </form>
+
+          <!-- success state -->
+          <div class="success" id="success" hidden>
+            <span class="success__mark">✓</span>
+            <h3 class="success__title">Aplicação recebida.</h3>
+            <p class="success__text">Obrigada por dedicar esse tempo. Nossa equipe vai analisar seu perfil e, se fizer sentido para o seu momento, entrará em contato pelo WhatsApp informado.</p>
+            <a class="success__back" href="/">Voltar ao site</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="wrap footer__inner">
+        <div>
+          <span class="footer__mark">MFV</span>
+          <p class="footer__by">Mentoria por Samantha Busnello</p>
+        </div>
+        <p class="footer__fine">© <span id="year"></span> Método MFV. Todos os direitos reservados. Este conteúdo é educativo e não garante resultados; resultados dependem da implementação de cada profissional.</p>
+      </div>
+    </footer>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

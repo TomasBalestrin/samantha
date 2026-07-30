@@ -350,6 +350,22 @@ img { max-width: 100%; display: block; }
   --field-bg: #fffdf8;
   --err: #b4442f;
 }
+/* dedicated form page */
+.formmain { display: flex; flex-direction: column; }
+.section--apply.formpage { flex: 1; display: flex; align-items: center; min-height: calc(100svh - 66px); padding-block: clamp(2rem, 4vw, 3.5rem); }
+.section--apply.formpage .wrap--form { width: 100%; }
+.formpage .section__head { max-width: 640px; margin-bottom: clamp(1.5rem, 3vw, 2.25rem); }
+.formpage .section__title { font-size: clamp(1.5rem, 1.15rem + 1.5vw, 2.3rem); }
+.formpage .apply__sub { font-size: 1rem; }
+.formpage .quiz { margin-top: 0; }
+.success__back {
+  display: inline-block; margin-top: 1.6rem;
+  font-family: var(--ff-body); font-weight: 600; font-size: 0.9rem;
+  color: #7a5a28; text-decoration: none; border-bottom: 1px solid currentColor;
+  padding-bottom: 2px; transition: color 0.2s var(--ease);
+}
+.success__back:hover { color: var(--ink); }
+
 /* quiz card */
 .quiz {
   margin-top: clamp(2.5rem, 5vw, 3.5rem);
