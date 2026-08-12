@@ -162,6 +162,9 @@ if (form) {
     // Ex.: fetch('/api/aplicacao', { method: 'POST', body: JSON.stringify(data) })
     console.info('Aplicação MFV recebida:', data)
 
+    // conversão do Meta Pixel (otimização de campanhas para "Lead")
+    if (window.fbq) window.fbq('track', 'Lead')
+
     form.hidden = true
     if (success) {
       success.hidden = false
