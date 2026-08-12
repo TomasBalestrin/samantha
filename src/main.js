@@ -71,6 +71,10 @@ if (phone) {
 }
 
 /* ---------- quiz de aplicação (uma pergunta por etapa) ---------- */
+// Cole aqui a URL do Web App do Google Apps Script (salva na planilha + envia e-mail).
+// Enquanto estiver vazio, o formulário só mostra a tela de sucesso (não envia nada).
+const LEAD_ENDPOINT = 'https://script.google.com/macros/s/AKfycbyTso7Y6dEIRfu5lZle0Sls5YGHaO731__JimfO6bNd-NvpEnj5bQXdX7aaEqm8o-Iw/exec'
+
 const form = document.getElementById('application-form')
 const success = document.getElementById('success')
 
@@ -158,9 +162,20 @@ if (form) {
     if (!validateStep()) return
 
     const data = Object.fromEntries(new FormData(form).entries())
-    // TODO: conectar a um destino real (webhook, e-mail, planilha ou CRM).
-    // Ex.: fetch('/api/aplicacao', { method: 'POST', body: JSON.stringify(data) })
-    console.info('Aplicação MFV recebida:', data)
+    data.enviado_em = new Date().toISOString()
+    data.origem = location.href
+
+    // envia para a planilha + dispara e-mail de aviso (Google Apps Script)
+    if (LEAD_ENDPOINT) {
+      fetch(LEAD_ENDPOINT, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify(data)
+      }).catch((err) => console.error('Falha ao enviar o lead:', err))
+    } else {
+      console.info('Aplicação MFV recebida (LEAD_ENDPOINT não configurado):', data)
+    }
 
     // conversão do Meta Pixel (otimização de campanhas para "Lead")
     if (window.fbq) window.fbq('track', 'Lead')
