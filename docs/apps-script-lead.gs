@@ -12,7 +12,8 @@
  * 5. Cole essa URL em LEAD_ENDPOINT no arquivo src/main.js do site.
  */
 
-const EMAIL_TO = 'email-da-samantha@exemplo.com'; // <-- troque pelo e-mail da mentora
+const EMAIL_TO = 'Dra.samanthabusnello@gmail.com'; // destinatário do aviso
+const SENDER_NAME = 'Confirmação Lead';            // nome que aparece como remetente
 
 function doPost(e) {
   const data = JSON.parse(e.postData.contents);
@@ -35,6 +36,7 @@ function doPost(e) {
 
   MailApp.sendEmail({
     to: EMAIL_TO,
+    name: SENDER_NAME,
     subject: '🎯 Novo lead — Sessão Estratégica MFV: ' + (data.nome || 'sem nome'),
     body:
       'Chegou uma nova aplicação:\n\n' +

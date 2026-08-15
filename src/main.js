@@ -73,7 +73,7 @@ if (phone) {
 /* ---------- quiz de aplicação (uma pergunta por etapa) ---------- */
 // Cole aqui a URL do Web App do Google Apps Script (salva na planilha + envia e-mail).
 // Enquanto estiver vazio, o formulário só mostra a tela de sucesso (não envia nada).
-const LEAD_ENDPOINT = 'https://script.google.com/macros/s/AKfycbyTso7Y6dEIRfu5lZle0Sls5YGHaO731__JimfO6bNd-NvpEnj5bQXdX7aaEqm8o-Iw/exec'
+const LEAD_ENDPOINT = 'https://script.google.com/macros/s/AKfycbz-dTVX2MNelt4T0q-Wwrg8rWdE6JT2vYHfN6kKrhplCsrLZXlw654ED4oEwymaninh/exec'
 
 const form = document.getElementById('application-form')
 const success = document.getElementById('success')
